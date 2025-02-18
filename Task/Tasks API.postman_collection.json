@@ -1,0 +1,484 @@
+{
+	"info": {
+		"_postman_id": "998c0678-b19d-4e15-8a5e-76639fcebd25",
+		"name": "Tasks API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25597740"
+	},
+	"item": [
+		{
+			"name": "Task",
+			"item": [
+				{
+					"name": "getAllTasks",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}api/tasks/",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"tasks",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getOneTask",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}api/tasks/c87da59e-5fbf-4494-a2e7-98d730a4e951",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"tasks",
+								"c87da59e-5fbf-4494-a2e7-98d730a4e951"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createTasks",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"task_id\", pm.response.json().data.id);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user_id\": \"d7830fcd-eab0-4ea2-b089-022f44f8e4c6\", \r\n    \"title\": \"coba task api\", \r\n    \"description\": \"membuat task api dengan express\", \r\n    \"status\": \"Pending\", \r\n    \"priority\": \"Low\", \r\n    \"due_date\": \"2024-12-10T00:00:00Z\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}api/tasks/",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"tasks",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateTasks",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"coba task\" \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}api/tasks/{{task_id}}",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"tasks",
+								"{{task_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteTasks",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"task_id\", \"\");"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}api/tasks/{{task_id}}",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"tasks",
+								"{{task_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllTasksFeatures",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}api/tasks/?order=asc,desc&sort=status,title",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"tasks",
+								""
+							],
+							"query": [
+								{
+									"key": "fields",
+									"value": "title,status,description",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "priority",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "order",
+									"value": "asc,desc"
+								},
+								{
+									"key": "sort",
+									"value": "status,title"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Lou Shi\",\r\n    \"email\": \"loushi@gmail.com\",\r\n    \"password\": \"Astaga\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}api/users/register",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"users",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"jwt\", pm.response.json().token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"loushi@gmail.com\",\r\n    \"password\": \"Astaga\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}api/users/login",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getMe",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}api/users/get-me",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"users",
+								"get-me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteUser",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}api/users/b85bcda7-2c5a-44ca-af83-932bb5efcfc3",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"users",
+								"b85bcda7-2c5a-44ca-af83-932bb5efcfc3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "taskAssign",
+			"item": [
+				{
+					"name": "Assign Task",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"assigned_to\": \"8631fd92-85ca-4b7f-8ad6-098d70ef7ab4\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}api/tasks/4015cb85-8523-4336-9682-f5d988f86f0c/assign",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"tasks",
+								"4015cb85-8523-4336-9682-f5d988f86f0c",
+								"assign"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "assign_to_me",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}api/tasks/assigned-to-me",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"tasks",
+								"assigned-to-me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Unassign Task",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}api/tasks/4015cb85-8523-4336-9682-f5d988f86f0c/unassign",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"tasks",
+								"4015cb85-8523-4336-9682-f5d988f86f0c",
+								"unassign"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
